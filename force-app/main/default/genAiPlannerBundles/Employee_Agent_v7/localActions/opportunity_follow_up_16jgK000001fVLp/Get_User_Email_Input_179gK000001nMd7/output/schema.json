@@ -1,0 +1,14 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "email_result_data" : {
+      "title" : "email_result_data",
+      "description" : "メール宛先、件名、本文",
+      "lightning:type" : "c__accInlineEmailEditorOutput",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

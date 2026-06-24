@@ -1,0 +1,39 @@
+.stencil-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.stencil-label {
+    height: 0.75rem;
+    border-radius: 4px;
+    background-color: #f3f3f3;
+    animation: stencil-pulse 1.5s infinite ease-in-out;
+}
+
+.stencil-input {
+    height: 2rem;
+    border-radius: 4px;
+    background-color: #f3f3f3;
+    animation: stencil-pulse 1.5s infinite ease-in-out;
+    margin-top: 0.5rem;
+}
+
+.stencil-textarea {
+    height: 6rem;
+    border-radius: 4px;
+    background-color: #f3f3f3;
+    animation: stencil-pulse 1.5s infinite ease-in-out;
+    margin-top: 0.5rem;
+}
+
+.w-30 { width: 30%; }
+.w-20 { width: 20%; }
+.w-15 { width: 15%; }
+.w-full { width: 100%; }
+
+@keyframes stencil-pulse {
+    0% { background-color: #f3f3f3; }
+    50% { background-color: #e2e2e2; }
+    100% { background-color: #f3f3f3; }
+}

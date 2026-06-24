@@ -1,0 +1,24 @@
+{
+  "required" : [ "Input:MessagingSession", "Input:AlertMessage" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "Input:MessagingSession" : {
+      "title" : "MessagingSession",
+      "description" : "MessagingSession",
+      "lightning:type" : "lightning__recordInfoType",
+      "lightning:sObjectInfo" : {
+        "apiName" : "MessagingSession"
+      },
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Input:AlertMessage" : {
+      "title" : "AlertMessage",
+      "description" : "発生した障害のメッセージ。ユーザーが発した言葉の中から探してください。",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

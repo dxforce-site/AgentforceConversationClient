@@ -1,0 +1,4 @@
+{
+  "title": "ACC Inline Email Editor Input",
+  "lightning:type": "@apexClassType/c__AccInlineEmailEditorService$EmailInput"
+}

@@ -1,0 +1,59 @@
+<template>
+    <div class="slds-box slds-theme_default">
+        <h2 class="slds-text-heading_small slds-var-m-bottom_medium">AI ドラフトメール送信</h2>
+        
+        <template lwc:if={isGenerating}>
+            <div class="stencil-wrapper">
+                <div>
+                    <div class="stencil-label w-30"></div>
+                    <div class="stencil-input w-full"></div>
+                </div>
+                <div>
+                    <div class="stencil-label w-20"></div>
+                    <div class="stencil-input w-full"></div>
+                </div>
+                <div>
+                    <div class="stencil-label w-15"></div>
+                    <div class="stencil-textarea w-full"></div>
+                </div>
+            </div>
+        </template>
+        
+        <template lwc:else>
+            <div class="slds-form-element slds-var-m-bottom_small">
+                <label class="slds-form-element__label">宛先 (取引先責任者)</label>
+                <div class="slds-form-element__control">
+                    <lightning-record-picker
+                        label="取引先責任者"
+                        variant="label-hidden"
+                        object-api-name="Contact"
+                        placeholder="取引先責任者を検索..."
+                        value={selectedContactId}
+                        onchange={handleContactChange}
+                        disabled={readOnly}>
+                    </lightning-record-picker>
+                    <template lwc:if={_toAddress}>
+                        <div class="slds-text-body_small slds-var-m-top_xx-small slds-text-color_weak">
+                            メールアドレス: {_toAddress}
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <div class="slds-form-element slds-var-m-bottom_small">
+                <label class="slds-form-element__label" for="subject">件名</label>
+                <div class="slds-form-element__control">
+                    <input type="text" id="subject" class="slds-input" value={_subject} onchange={handleSubjectChange} disabled={readOnly} />
+                </div>
+            </div>
+
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="body">本文</label>
+                <div class="slds-form-element__control">
+                    <textarea id="body" class="slds-textarea" rows="6" onchange={handleBodyChange} disabled={readOnly}>{_body}</textarea>
+                </div>
+            </div>
+
+        </template>
+    </div>
+</template>

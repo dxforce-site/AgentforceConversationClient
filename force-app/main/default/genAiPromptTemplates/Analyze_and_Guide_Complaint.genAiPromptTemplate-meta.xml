@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>PyOq0FQpip7cl2WGPYT0IPHunRzOX/qsCE2Mh+HdL9E=_2</activeVersionIdentifier>
+    <description>対象ケースの申告内容（件名、説明）とマニュアルを照らし合わせ、顧客の不満ポイントの特定と初期対応の指示を生成してテキスト出力します。</description>
+    <developerName>Analyze_and_Guide_Complaint</developerName>
+    <masterLabel>Analyze_and_Guide_Complaint</masterLabel>
+    <overridable>false</overridable>
+    <templateVersions>
+        <content>## 役割
+あなたはカスタマーサポート部門の冷静で経験豊富なスーパーバイザーです。
+以下のケース（Case）の申告内容と、社内のクレーム対応マニュアル（ナレッジ）を分析し、対応に当たるオペレーターへの初期対応アドバイスを作成してください。
+
+## ケースのコンテキスト
+件名: {!$Input:Case.Subject}
+申告内容（Description）: {!$Input:Case.Description}
+
+## 関連する社内マニュアル（RAG検索結果）
+ {!$EinsteinSearch:Knowledge_Article_Version_Retriever_1Cx_5Ol2c8db30f.results}
+
+【作成のガイドライン（厳守事項）】
+1. 不満の核心の特定: 申告内容から、顧客の「一次的な不満（例：製品の不具合）」と「二次的な不満（例：対応の遅れ、態度の悪さ）」を明確に切り分けて抽出してください。
+2. 謝罪の方向性: 社内マニュアルに基づき、法的な責任を安易に認める発言は避けつつも、顧客の心情に寄り添う「部分謝罪（例：ご不快な思いをさせたことへの謝罪）」の方向性を具体的に指示してください。
+3. 必須確認事項のリストアップ: マニュアルに記載されている標準対応フローに従い、第一報でお客様に必ずヒアリングすべき事項（例：シリアル番号、購入店舗、発生日時など）を箇条書きで抽出してください。
+4. トーン＆マナー: オペレーターの焦りを和らげるような、落ち着いた簡潔なトーン（「〜です／〜ます」調）で出力してください。
+5. 出力形式: 以下のMarkdownフォーマットに厳密に従って出力してください。挨拶などの余分なテキストは一切不要です。
+
+## 出力フォーマット
+```
+### 🚨 顧客の不満の核心
+* [一次クレームの内容]
+* [二次クレームの内容（あれば）]
+
+### 💡 初期対応（謝罪）のアドバイス
+[オペレーターが第一声で伝えるべき謝罪のトーンと、避けるべき発言の具体的な指示]
+
+### 📋 最初の連絡でヒアリングすべき必須確認事項
+* [確認事項1]
+* [確認事項2]
+```
+</content>
+        <fileDroppingStrategy>{&quot;dropFilesBy&quot;:&quot;LAST_MODIFIED_DATE&quot;,&quot;dropFileStartingWith&quot;:&quot;OLDEST&quot;}</fileDroppingStrategy>
+        <generationTemplateConfigs>
+            <generationConfigDeveloperName>einstein_gpt__jaJpLanguageStyle</generationConfigDeveloperName>
+        </generationTemplateConfigs>
+        <inputs>
+            <apiName>Case</apiName>
+            <definition>SOBJECT://Case</definition>
+            <masterLabel>Case</masterLabel>
+            <referenceName>Input:Case</referenceName>
+            <required>true</required>
+        </inputs>
+        <isCitationEnabled>false</isCitationEnabled>
+        <primaryModel>sfdc_ai__DefaultGPT5Mini</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getEinsteinRetrieverResults/Knowledge_Article_Version_Retriever_1Cx_5Ol2c8db30f</definition>
+            <label>Knowledge Article Version Retriever</label>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>searchText</parameterName>
+                <valueExpression>{!$Input:Case.Description}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://List&lt;String&gt;</definition>
+                <isRequired>false</isRequired>
+                <parameterName>outputFieldNames</parameterName>
+                <valueExpression>[&quot;ecktc2a4k&quot;,&quot;c7vo69d&quot;,&quot;X7dvn0b&quot;]</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://Integer</definition>
+                <isRequired>false</isRequired>
+                <parameterName>resultCount</parameterName>
+                <valueExpression>1</valueExpression>
+            </parameters>
+            <referenceName>EinsteinSearch:Knowledge_Article_Version_Retriever_1Cx_5Ol2c8db30f</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>PyOq0FQpip7cl2WGPYT0IPHunRzOX/qsCE2Mh+HdL9E=_1</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>## 役割
+あなたはカスタマーサポート部門の冷静で経験豊富なスーパーバイザーです。
+以下のケース（Case）の申告内容と、社内のクレーム対応マニュアル（ナレッジ）を分析し、対応に当たるオペレーターへの初期対応アドバイスを作成してください。
+なお、オペレーターはリアルタイムの電話やチャットではなく、ケースコメントを書くという前提で考えてください。
+
+## ケースのコンテキスト
+件名: {!$Input:Case.Subject}
+申告内容（Description）: {!$Input:Case.Description}
+
+## 関連する社内マニュアル（RAG検索結果）
+ {!$EinsteinSearch:Knowledge_Article_Version_Retriever_1Cx_5Ol2c8db30f.results}
+
+【作成のガイドライン（厳守事項）】
+1. 不満の核心の特定: 申告内容から、顧客の「一次的な不満（例：製品の不具合）」と「二次的な不満（例：対応の遅れ、態度の悪さ）」を明確に切り分けて抽出してください。
+2. 謝罪の方向性: 社内マニュアルに基づき、法的な責任を安易に認める発言は避けつつも、顧客の心情に寄り添う「部分謝罪（例：ご不快な思いをさせたことへの謝罪）」の方向性を具体的に指示してください。
+3. 必須確認事項のリストアップ: マニュアルに記載されている標準対応フローに従い、第一報でお客様に必ずヒアリングすべき事項（例：シリアル番号、購入店舗、発生日時など）を箇条書きで抽出してください。
+4. トーン＆マナー: オペレーターの焦りを和らげるような、落ち着いた簡潔なトーン（「〜です／〜ます」調）で出力してください。
+5. 出力形式: 以下のMarkdownフォーマットに厳密に従って出力してください。挨拶などの余分なテキストは一切不要です。
+
+## 出力フォーマット
+```
+### 🚨 顧客の不満の核心
+* [一次クレームの内容]
+* [二次クレームの内容（あれば）]
+
+### 💡 初期対応（謝罪）のアドバイス
+[オペレーターが第一声で伝えるべき謝罪のトーンと、避けるべき発言の具体的な指示]
+
+### 📋 最初の連絡でヒアリングすべき必須確認事項
+* [確認事項1]
+* [確認事項2]
+
+### 📝 推奨されるメッセージ例
+[上記を受けてあなたが最終的に推奨する具体的なメッセージ。改行や箇条書きを使いながら冷静にかつ誠意のあるメッセージを記載。ケース内に既にある情報をお客様に尋ねることはしない。]
+```
+</content>
+        <fileDroppingStrategy>{&quot;dropFilesBy&quot;:&quot;LAST_MODIFIED_DATE&quot;,&quot;dropFileStartingWith&quot;:&quot;OLDEST&quot;}</fileDroppingStrategy>
+        <generationTemplateConfigs>
+            <generationConfigDeveloperName>einstein_gpt__jaJpLanguageStyle</generationConfigDeveloperName>
+        </generationTemplateConfigs>
+        <inputs>
+            <apiName>Case</apiName>
+            <definition>SOBJECT://Case</definition>
+            <masterLabel>Case</masterLabel>
+            <referenceName>Input:Case</referenceName>
+            <required>true</required>
+        </inputs>
+        <isCitationEnabled>false</isCitationEnabled>
+        <primaryModel>sfdc_ai__DefaultGPT5Mini</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getEinsteinRetrieverResults/Knowledge_Article_Version_Retriever_1Cx_5Ol2c8db30f</definition>
+            <label>Knowledge Article Version Retriever</label>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>searchText</parameterName>
+                <valueExpression>{!$Input:Case.Description}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://List&lt;String&gt;</definition>
+                <isRequired>false</isRequired>
+                <parameterName>outputFieldNames</parameterName>
+                <valueExpression>[&quot;ecktc2a4k&quot;,&quot;c7vo69d&quot;,&quot;X7dvn0b&quot;]</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://Integer</definition>
+                <isRequired>false</isRequired>
+                <parameterName>resultCount</parameterName>
+                <valueExpression>1</valueExpression>
+            </parameters>
+            <referenceName>EinsteinSearch:Knowledge_Article_Version_Retriever_1Cx_5Ol2c8db30f</referenceName>
+        </templateDataProviders>
+        <templateFormat>FormulaExpression</templateFormat>
+        <versionIdentifier>PyOq0FQpip7cl2WGPYT0IPHunRzOX/qsCE2Mh+HdL9E=_2</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

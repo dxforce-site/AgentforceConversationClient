@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Opportunity Follow Up</label>
+    <protected>false</protected>
+    <values>
+        <field>BotId__c</field>
+        <value xsi:type="xsd:string">0XxgK000001lYP3SAM</value>
+    </values>
+    <values>
+        <field>TargetProfiles__c</field>
+        <value xsi:type="xsd:string">00egK000006jMcv</value>
+    </values>
+</CustomMetadata>

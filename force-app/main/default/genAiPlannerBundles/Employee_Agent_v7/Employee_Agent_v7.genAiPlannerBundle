@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Automate common business tasks and assist users in their flow of work. Agentforce Employee Agent can search knowledge articles and other data sources. Customize it further to meet your employees&apos; business needs.</description>
+    <localTopicLinks>
+        <genAiPluginName>agent_router_16jgK000001fVLp</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>case_claim_advice_16jgK000001fVLp</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>messaging_system_alert_16jgK000001fVLp</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>opportunity_follow_up_16jgK000001fVLp</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>agent_router_16jgK000001fVLp</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Welcome the user and determine the appropriate subagent based on user input</description>
+        <developerName>agent_router_16jgK000001fVLp</developerName>
+        <genAiPluginInstructions>
+            <description>You are an AI Agent.
+
+The user&apos;s current context is:
+Current App Name: {!@variables.currentAppName}
+Current Object Name: {!@variables.currentObjectApiName}
+Current Page Type: {!@variables.currentPageType}
+Current Record ID: {!@variables.currentRecordId}
+
+{{state.AgentScriptInternal_agent_instructions}}</description>
+            <developerName>instruction0_179gK000001nMdA</developerName>
+            <language>ja</language>
+            <masterLabel>instruction0_179gK000001nMdA</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>ja</language>
+        <localDeveloperName>agent_router</localDeveloperName>
+        <masterLabel>Agent Router</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>messaging_system_alert_16jgK000001fVLp</fullName>
+        <canEscalate>false</canEscalate>
+        <description>オムニチャネルでのチャット対応中にシステム障害が発生した際、障害情報とチャット相手の顧客情報を結合し、即座にチャット欄へコピー＆ペーストできる個別のお詫び文を生成します。</description>
+        <developerName>messaging_system_alert_16jgK000001fVLp</developerName>
+        <genAiPluginInstructions>
+            <description>You are an AI Agent.
+
+The user&apos;s current context is:
+Current App Name: {{state.currentAppName}}
+Current Object Name: {{state.currentObjectApiName}}
+Current Page Type: {{state.currentPageType}}
+Current Record ID: {{state.currentRecordId}}</description>
+            <developerName>instruction0_179gK000001nMd9</developerName>
+            <language>ja</language>
+            <masterLabel>instruction0_179gK000001nMd9</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>ja</language>
+        <localActionLinks>
+            <functionName>Generate_Immediate_Response_179gK000001nMd9</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Generate_Immediate_Response_179gK000001nMd9</fullName>
+            <description>障害内容と、チャット相手の顧客情報（契約形態や優先度など）を掛け合わせ、その顧客専用のチャット返信文（お詫び・案内）を生成します。</description>
+            <developerName>Generate_Immediate_Response_179gK000001nMd9</developerName>
+            <invocationTarget>Generate_Immediate_Response</invocationTarget>
+            <invocationTargetType>generatePromptResponse</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Generate_Immediate_Response</localDeveloperName>
+            <masterLabel>Generate_Immediate_Response</masterLabel>
+            <progressIndicatorMessage>お詫び文案を生成中...</progressIndicatorMessage>
+        </localActions>
+        <localDeveloperName>messaging_system_alert</localDeveloperName>
+        <masterLabel>Messaging System Alert</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>case_claim_advice_16jgK000001fVLp</fullName>
+        <canEscalate>false</canEscalate>
+        <description>ケースの申告内容を分析し、社内ナレッジと照らし合わせて最適な初期対応の方向性と必須確認事項をオペレーターに提示します。</description>
+        <developerName>case_claim_advice_16jgK000001fVLp</developerName>
+        <genAiPluginInstructions>
+            <description>You are an AI Agent.
+
+The user&apos;s current context is:
+Current App Name: {{state.currentAppName}}
+Current Object Name: {{state.currentObjectApiName}}
+Current Page Type: {{state.currentPageType}}
+Current Record ID: {{state.currentRecordId}}</description>
+            <developerName>instruction0_179gK000001nMd8</developerName>
+            <language>ja</language>
+            <masterLabel>instruction0_179gK000001nMd8</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>ja</language>
+        <localActionLinks>
+            <functionName>Analyze_and_Guide_Complaint_179gK000001nMd8</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Analyze_and_Guide_Complaint_179gK000001nMd8</fullName>
+            <description>対象ケースの申告内容（件名、説明）とマニュアルを照らし合わせ、顧客の不満ポイントの特定と初期対応の指示を生成してテキスト出力します。</description>
+            <developerName>Analyze_and_Guide_Complaint_179gK000001nMd8</developerName>
+            <invocationTarget>Analyze_and_Guide_Complaint</invocationTarget>
+            <invocationTargetType>generatePromptResponse</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Analyze_and_Guide_Complaint</localDeveloperName>
+            <masterLabel>Analyze_and_Guide_Complaint</masterLabel>
+            <progressIndicatorMessage>初期対応アドバイスを生成中...</progressIndicatorMessage>
+        </localActions>
+        <localDeveloperName>case_claim_advice</localDeveloperName>
+        <masterLabel>Case Claim Advice</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>opportunity_follow_up_16jgK000001fVLp</fullName>
+        <canEscalate>false</canEscalate>
+        <description>停滞している商談の非構造化データ（過去の経緯やネクストステップ）を分析し、顧客へのアプローチ文案の生成からメール送信までを一貫して実行します。</description>
+        <developerName>opportunity_follow_up_16jgK000001fVLp</developerName>
+        <genAiPluginInstructions>
+            <description>You are an AI Agent.
+
+The user&apos;s current context is:
+Current App Name: {{state.currentAppName}}
+Current Object Name: {{state.currentObjectApiName}}
+Current Page Type: {{state.currentPageType}}
+Current Record ID: {{state.currentRecordId}}</description>
+            <developerName>instruction0_179gK000001nMd7</developerName>
+            <language>ja</language>
+            <masterLabel>instruction0_179gK000001nMd7</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>ja</language>
+        <localActionLinks>
+            <functionName>Get_User_Email_Input_179gK000001nMd7</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Get_User_Email_Input_179gK000001nMd7</fullName>
+            <description>チャットパネル内にインラインメールエディタ（LWC）を描画し、ユーザーからの編集と送信指示（確定した宛先、件名、本文）を受け取ってエージェントに返却します。</description>
+            <developerName>Get_User_Email_Input_179gK000001nMd7</developerName>
+            <invocationTarget>AccInlineEmailEditorService</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Get_User_Email_Input</localDeveloperName>
+            <masterLabel>Get_User_Email_Input</masterLabel>
+        </localActions>
+        <localDeveloperName>opportunity_follow_up</localDeveloperName>
+        <masterLabel>Opportunity Follow Up</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <masterLabel>Employee Agent</masterLabel>
+    <plannerType>Atlas__ConcurrentMultiAgentOrchestration</plannerType>
+</GenAiPlannerBundle>

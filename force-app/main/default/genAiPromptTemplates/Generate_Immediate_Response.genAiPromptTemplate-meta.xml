@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>PyOq0FQpip7cl2WGPYT0IPHunRzOX/qsCE2Mh+HdL9E=_1</activeVersionIdentifier>
+    <description>障害内容と、チャット相手の顧客情報（契約形態や優先度など）を掛け合わせ、その顧客専用のチャット返信文（お詫び・案内）を生成します。</description>
+    <developerName>Generate_Immediate_Response</developerName>
+    <masterLabel>Generate_Immediate_Response</masterLabel>
+    <overridable>false</overridable>
+    <templateVersions>
+        <content>## 役割
+あなたはテクニカルサポート部門の危機管理アシスタントです。 現在、重大なシステム障害が発生しました。オペレーターがリアルタイムでチャット対応中（MessagingSession）の顧客に対し、直ちに送信すべきお詫びと案内のテキストを作成してください。 
+
+## 障害情報
+{!$Input:AlertMessage} 
+
+## チャット対応中の顧客情報（MessagingSession）
+顧客名: {!$Input:MessagingSession.MessagingEndUser.Name}
+顧客区分（SLA）: {!$Input:MessagingSession.EndUserAccount.SLA__c} 
+チャネル: {!$Input:MessagingSession.ChannelType}
+
+## 作成のガイドライン（厳守事項）
+1. 挨拶の完全排除: オペレーターと顧客のチャットは既に進行中です。会話の途中で送信するため、「〇〇様」といった宛名や「いつもご利用ありがとうございます」等の挨拶は一切出力しないでください。いきなり本題（謝罪と状況説明）から入ってください。
+2. 顧客コンテキストの自然な反映: 顧客区分（SLA）を判定し、上位顧客（例: Platinum, VIP, Goldなど）である場合は優先的な状況報告を約束してください。その際、「〇〇様はPlatinumサポートをご契約いただいておりますので」といった、オペレーター自身の言葉としての自然な言い回しを使用してください。
+3. 約束と代替案の捏造禁止（最重要）: 障害情報（AlertMessage）に明記されていない情報（復旧予定時間、銀行振込などの代替決済手段、ワークアラウンドなど）は「絶対に」出力しないでください。推測による案内は二次クレームの原因となります。提供できる情報がない場合は、「詳細が分かり次第、最優先でご報告いたします」と誠実に謝罪と報告の約束を行ってください。
+4. コピー＆ペースト対応: オペレーターがそのままチャット欄に貼り付けて送信できるよう、あなたの思考プロセスや前置きは一切出力せず、返信用のテキストのみを出力してください。適度に改行を入れ、読みやすくしてください。
+
+## 出力フォーマット
+[チャット返信用のテキストのみを直接出力]
+</content>
+        <fileDroppingStrategy>{&quot;dropFilesBy&quot;:&quot;LAST_MODIFIED_DATE&quot;,&quot;dropFileStartingWith&quot;:&quot;OLDEST&quot;}</fileDroppingStrategy>
+        <inputs>
+            <apiName>MessagingSession</apiName>
+            <definition>SOBJECT://MessagingSession</definition>
+            <masterLabel>MessagingSession</masterLabel>
+            <referenceName>Input:MessagingSession</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>AlertMessage</apiName>
+            <definition>primitive://String</definition>
+            <description>発生した障害のメッセージ</description>
+            <masterLabel>AlertMessage</masterLabel>
+            <referenceName>Input:AlertMessage</referenceName>
+            <required>true</required>
+        </inputs>
+        <isCitationEnabled>false</isCitationEnabled>
+        <primaryModel>sfdc_ai__DefaultGPT5Mini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>PyOq0FQpip7cl2WGPYT0IPHunRzOX/qsCE2Mh+HdL9E=_1</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

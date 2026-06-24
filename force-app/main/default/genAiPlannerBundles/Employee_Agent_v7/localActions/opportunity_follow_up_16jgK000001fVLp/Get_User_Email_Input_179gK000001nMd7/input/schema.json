@@ -1,0 +1,14 @@
+{
+  "required" : [ "emailData" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "emailData" : {
+      "title" : "emailData",
+      "description" : "メール宛先、件名、本文",
+      "lightning:type" : "c__accInlineEmailEditorInput",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

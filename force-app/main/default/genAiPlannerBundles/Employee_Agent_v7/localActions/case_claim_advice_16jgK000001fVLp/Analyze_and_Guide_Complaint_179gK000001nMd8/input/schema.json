@@ -1,0 +1,17 @@
+{
+  "required" : [ "Input:Case" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "Input:Case" : {
+      "title" : "Case",
+      "description" : "現在表示中のケースレコード",
+      "lightning:type" : "lightning__recordInfoType",
+      "lightning:sObjectInfo" : {
+        "apiName" : "Case"
+      },
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}
