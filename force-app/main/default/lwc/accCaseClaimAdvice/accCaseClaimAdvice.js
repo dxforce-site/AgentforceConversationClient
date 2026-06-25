@@ -105,7 +105,6 @@ export default class AccCaseClaimAdvice extends LightningElement {
 
         try {
             await open(this.botId);
-            await sleep(500);
             await execute(promptText, this.botId);
             
             console.log('ACC APIによるクレーム対応アドバイスが正常に開始されました');

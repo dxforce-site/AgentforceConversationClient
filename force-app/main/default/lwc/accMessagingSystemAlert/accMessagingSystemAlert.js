@@ -199,7 +199,6 @@ export default class AccMessagingSystemAlert extends LightningElement {
 
         try {
             await open(this.botId);
-            await sleep(500);
             await execute(promptText, this.botId);
             
             console.log('ACC APIによる障害アラート対応が正常に開始されました');

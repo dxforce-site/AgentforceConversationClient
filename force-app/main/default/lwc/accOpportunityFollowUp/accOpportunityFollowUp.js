@@ -132,11 +132,7 @@ export default class AccOpportunityFollowUp extends LightningElement {
             // 1. 必ず対象のボットIDを指定してパネルを開き、エージェントを切り替える
             await open(this.botId);
             
-            // 2. パネルの初期化とエージェント切り替えのレンダリングが完了するのを少し待つ
-            // （長すぎると遅く感じ、短すぎると真っ白でハングするため 500ms とする）
-            await sleep(500);
-            
-            // 3. 対象エージェントへプロンプトを送信する
+            // 2. 対象エージェントへプロンプトを送信する
             await execute(promptText, this.botId);
 
             console.log('ACC APIによるフォローアップ提案が正常に開始されました');
